@@ -5,14 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "novamarket-toolkit"
 version = "0.1.0"
-description = "Automation toolkit for Business/System Analyst"
+description = "Automation toolkit for Business/System Analysts"
 readme = "README.md"
 requires-python = ">=3.12"
 
 dependencies = ["typer>=0.27.0"]
 
 [project.scripts]
-novamarket-toolkit = "novamarket_toolkit.cli:main"
+novamarket = "novamarket_toolkit.cli:main"
 
 [tool.black]
 line-length = 100

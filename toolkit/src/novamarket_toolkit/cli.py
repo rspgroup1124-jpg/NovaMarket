@@ -1,25 +1,17 @@
 """Command-line interface for the NovaMarket Toolkit."""
 
-from importlib.metadata import version
-
 import typer
+
+from novamarket_toolkit.commands.doctor import doctor_command
+from novamarket_toolkit.commands.version import version_command
 
 app = typer.Typer(
     help="Automation toolkit for Business/System Analysts.",
     no_args_is_help=True,
 )
 
-
-@app.command()
-def doctor() -> None:
-    """Check that the toolkit is installed correctly."""
-    typer.echo("✅ NovaMarket Toolkit is installed and ready to use.")
-
-
-@app.command("version")
-def version_command() -> None:
-    """Show toolkit version."""
-    typer.echo(f"NovaMarket Toolkit v{version('novamarket-toolkit')}")
+app.command("doctor")(doctor_command)
+app.command("version")(version_command)
 
 
 @app.callback()
