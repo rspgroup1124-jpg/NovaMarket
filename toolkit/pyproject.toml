@@ -9,6 +9,9 @@ description = "Automation toolkit for Business/System Analyst"
 readme = "README.md"
 requires-python = ">=3.12"
 
+[project.scripts]
+novamarket-toolkit = "novamarket_toolkit.cli:main"
+
 [tool.black]
 line-length = 100
 target-version = ["py312"]
