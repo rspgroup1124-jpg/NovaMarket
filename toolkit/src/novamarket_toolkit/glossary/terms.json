@@ -1,0 +1,67 @@
+# ============================================================================
+# NovaMarket Toolkit
+# Technical Glossary
+#
+# IMPORTANT:
+# This file contains ONLY technical terms.
+# These values MUST NOT be translated.
+# ============================================================================
+
+user_story: User Story
+acceptance_criteria: Acceptance Criteria
+
+feature: Feature
+epic: Epic
+task: Task
+bug: Bug
+
+actor: Actor
+entity: Entity
+value_object: Value Object
+aggregate: Aggregate
+repository: Repository
+service: Service
+dto: DTO
+
+api: API
+openapi: OpenAPI
+rest_api: REST API
+graphql: GraphQL
+grpc: gRPC
+webhook: Webhook
+
+http: HTTP
+https: HTTPS
+
+request: Request
+response: Response
+endpoint: Endpoint
+
+header: Header
+body: Body
+query_parameter: Query Parameter
+path_parameter: Path Parameter
+
+status_code: Status Code
+
+json: JSON
+yaml: YAML
+xml: XML
+
+sql: SQL
+postgresql: PostgreSQL
+
+jwt: JWT
+oauth2: OAuth2
+
+crud: CRUD
+
+bpmn: BPMN
+uml: UML
+erd: ERD
+
+sequence_diagram: Sequence Diagram
+class_diagram: Class Diagram
+activity_diagram: Activity Diagram
+component_diagram: Component Diagram
+deployment_diagram: Deployment Diagram
