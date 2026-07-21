@@ -3,26 +3,29 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import ClassVar
+from typing import ClassVar, Generic, TypeVar
+
+T = TypeVar("T")
 
 
-class BaseGenerator(ABC):
+class BaseGenerator(ABC, Generic[T]):
     """Base class for all artifact generators."""
 
     artifact_name: ClassVar[str]
 
     @abstractmethod
-    def generate(self, **kwargs) -> str:
+    def generate(self, data: T) -> str:
         """
         Generate an artifact.
 
         Parameters
         ----------
-        **kwargs
-            Generator-specific parameters.
+        data
+            Domain model used to generate the artifact.
 
         Returns
         -------
         str
             Generated artifact.
         """
+        raise NotImplementedError
