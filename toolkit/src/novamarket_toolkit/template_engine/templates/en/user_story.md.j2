@@ -1,0 +1,17 @@
+User Story
+
+As a {{ role }},
+I want to {{ goal }},
+so that I can {{ benefit }}.
+{% if acceptance_criteria %}
+
+Acceptance Criteria
+{% for criterion in acceptance_criteria %}
+- {{ criterion }}
+{% endfor %}
+{% endif %}
+{% if notes %}
+
+Notes
+{{ notes }}
+{% endif %}

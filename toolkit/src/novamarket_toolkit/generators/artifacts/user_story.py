@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from novamarket_toolkit.generators.base import BaseGenerator
 from novamarket_toolkit.models.user_story import UserStory
+from novamarket_toolkit.template_engine import TemplateEngine
 
 
 class UserStoryGenerator(BaseGenerator[UserStory]):
@@ -11,13 +12,31 @@ class UserStoryGenerator(BaseGenerator[UserStory]):
 
     artifact_name = "user_story"
 
+    def __init__(
+        self,
+        locale: str = "en",
+        template_engine: TemplateEngine | None = None,
+    ) -> None:
+        """
+        Initialize the generator.
+
+        Parameters
+        ----------
+        locale
+            Template locale.
+        template_engine
+            Template engine instance. If omitted, a default
+            TemplateEngine is created.
+        """
+        self._template_engine = template_engine or TemplateEngine(locale=locale)
+
     def generate(self, data: UserStory) -> str:
         """
         Generate a formatted User Story.
 
         Parameters
         ----------
-        data:
+        data
             User Story domain model.
 
         Returns
@@ -25,49 +44,15 @@ class UserStoryGenerator(BaseGenerator[UserStory]):
         str
             Generated User Story.
         """
-        lines: list[str] = [
-            "User Story",
-            "",
-            f"As a {data.actor},",
-            f"I want to {data.action},",
-            f"so that I can {data.benefit}.",
-        ]
+        context = {
+            "role": data.actor,
+            "goal": data.action,
+            "benefit": data.benefit,
+            "acceptance_criteria": list(data.acceptance_criteria),
+            "notes": data.notes,
+        }
 
-        if data.acceptance_criteria:
-            lines.extend(
-                [
-                    "",
-                    "Acceptance Criteria",
-                    *self._generate_acceptance_criteria(data.acceptance_criteria),
-                ]
-            )
-
-        if data.notes:
-            lines.extend(
-                [
-                    "",
-                    "Notes",
-                    data.notes,
-                ]
-            )
-
-        return "\n".join(lines)
-
-    @staticmethod
-    def _generate_acceptance_criteria(
-        criteria: tuple[str, ...],
-    ) -> list[str]:
-        """
-        Format acceptance criteria.
-
-        Parameters
-        ----------
-        criteria:
-            Acceptance criteria.
-
-        Returns
-        -------
-        list[str]
-            Formatted acceptance criteria.
-        """
-        return [f"- {criterion}" for criterion in criteria]
+        return self._template_engine.render(
+            template_name=self.artifact_name,
+            context=context,
+        )
