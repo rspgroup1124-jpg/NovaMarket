@@ -6,6 +6,28 @@ The project follows an iterative sprint-based development process.
 
 ---
 
+## Sprint 8
+
+### Added
+
+- Added the `BPMNProcess` domain model and related BPMN entities.
+- Added the `BPMNGenerator`.
+- Added the `bpmn_process.md.j2` template.
+- Added unit tests for the `BPMNProcess` domain model.
+- Added unit tests for the `BPMNGenerator`.
+- Added the initial architecture documentation (`docs/architecture/ARCHITECTURE.md`).
+
+
+### Architecture
+
+- Established the architecture documentation for the Toolkit.
+- Introduced `ARCHITECTURE.md` as the primary architecture reference.
+- Introduced Architecture Rules (AR) as the primary engineering standard.
+- Documented the design principles governing the Toolkit architecture.
+- Formalized layer responsibilities and the architecture evolution workflow.
+- Confirmed compliance with the Open/Closed Principle (OCP) by adding the BPMN generator without modifying the existing generator infrastructure.
+---
+
 ## Sprint 7
 
 ### Added

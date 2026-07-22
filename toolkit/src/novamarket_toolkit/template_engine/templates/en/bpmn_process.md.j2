@@ -1,0 +1,41 @@
+Process: {{ process.name }}
+{% if process.documentation %}
+Description:
+{{ process.documentation }}
+{% endif %}
+
+Participants:
+{% if participants %}
+{% for participant in participants %}
+- {{ participant.name }}
+{% endfor %}
+{% else %}
+- None
+{% endif %}
+
+Lanes:
+{% if lanes %}
+{% for lane in lanes %}
+- {{ lane.name }}
+{% endfor %}
+{% else %}
+- None
+{% endif %}
+
+Elements:
+{% if elements %}
+{% for element in elements %}
+- {{ element.id }} ({{ element.element_type }}): {{ element.name }}
+{% endfor %}
+{% else %}
+- None
+{% endif %}
+
+Sequence Flows:
+{% if sequence_flows %}
+{% for flow in sequence_flows %}
+- {{ flow.source }} -> {{ flow.target }}{% if flow.condition %} [{{ flow.condition }}]{% endif %}
+{% endfor %}
+{% else %}
+- None
+{% endif %}
