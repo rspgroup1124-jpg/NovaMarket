@@ -1,25 +1,25 @@
 # NovaMarket
 
-## 📖 О проекте
+## 📖 About
 
-**NovaMarket** — это учебный проект, имитирующий разработку современного маркетплейса.
+**NovaMarket** is an educational project that simulates the development of a modern marketplace.
 
-Проект создается с целью изучения полного жизненного цикла работы Business/System Analyst: от получения бизнес-требований до подготовки технической документации, моделей данных, API-контрактов, UML/BPMN-диаграмм и автоматизации рутинных задач с помощью Python.
-
----
-
-## 🎯 Цели проекта
-
-- Изучить работу Business/System Analyst на практике.
-- Создать полноценное портфолио аналитика.
-- Освоить BPMN, UML и PlantUML.
-- Научиться проектировать REST API.
-- Освоить моделирование базы данных PostgreSQL.
-- Автоматизировать создание документации с помощью Python.
+The project is designed to study the complete Business/System Analyst workflow — from business requirements to technical documentation, UML/BPMN diagrams, API specifications, data modeling, and documentation automation using Python.
 
 ---
 
-## 📂 Структура проекта
+## 🎯 Project Goals
+
+- Build a professional Business/System Analyst portfolio.
+- Practice modern system analysis techniques.
+- Learn BPMN, UML and PlantUML.
+- Design REST APIs.
+- Model PostgreSQL databases.
+- Automate analyst documentation using Python.
+
+---
+
+## 📂 Project Structure
 
 ```text
 NovaMarket/
@@ -37,11 +37,16 @@ NovaMarket/
 
 ---
 
-## 🛠 Используемые технологии
+## 🛠 Technologies
 
-- Python
+- Python 3.12+
 - PostgreSQL
 - Docker
+- Jinja2
+- Typer
+- Pytest
+- Ruff
+- Black
 - PlantUML
 - Graphviz
 - Git
@@ -49,23 +54,81 @@ NovaMarket/
 
 ---
 
-## 🚀 Статус проекта
+## 🧰 NovaMarket Toolkit
 
-Проект находится на этапе создания инфраструктуры и Python Toolkit.
+The Toolkit is a Python package that automates the creation of common Business/System Analyst artifacts.
 
-Ближайшая задача — подготовить Toolkit для автоматизации работы аналитика.
+### Current Features
+
+- Localization subsystem
+- Template Engine (Jinja2)
+- Generator Framework
+- User Story generation
+- Use Case generation
+- Unit and integration tests
+
+---
+
+## 🏗 Architecture
+
+The Toolkit follows a layered architecture.
+
+```text
+Domain Models
+      │
+      ▼
+Generators
+      │
+      ▼
+Template Engine
+      │
+      ▼
+Jinja2 Templates
+```
+
+This separation keeps business logic independent from presentation and makes the framework easily extensible.
+
+---
+
+## 🧪 Quality Assurance
+
+The project includes:
+
+- Unit tests
+- Integration tests
+- Black formatting
+- Ruff linting
+- Immutable domain models
+- Template-based artifact generation
+
+---
+
+## 🚀 Current Status
+
+Completed:
+
+- Project infrastructure
+- Localization subsystem
+- Generator framework
+- Template engine
+- User Story generator
+- Use Case generator
+
+The Toolkit is now ready to support additional artifact generators without changes to the core architecture.
 
 ---
 
 ## 📅 Roadmap
 
-- [x] Создание Git-репозитория
-- [x] Создание структуры проекта
-- [ ] Настройка Python Toolkit
-- [ ] Первый CLI-инструмент
-- [ ] Первая User Story
-- [ ] BPMN
-- [ ] UML
-- [ ] OpenAPI
-- [ ] SQL
-- [ ] Автоматизация документации
+- [x] Project infrastructure
+- [x] Localization subsystem
+- [x] Generator framework
+- [x] Template Engine
+- [x] User Story generator
+- [x] Use Case generator
+- [ ] BPMN generator
+- [ ] UML generator
+- [ ] OpenAPI generator
+- [ ] SQL generator
+- [ ] HTML export
+- [ ] PDF export
