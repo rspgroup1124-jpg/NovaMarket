@@ -1,0 +1,50 @@
+Use Case
+
+Title
+{{ title }}
+
+Goal
+{{ goal }}
+
+Primary Actor
+{{ primary_actor }}
+
+{% if secondary_actors %}
+Secondary Actors
+{% for actor in secondary_actors %}
+- {{ actor }}
+{% endfor %}
+
+{% endif %}
+{% if preconditions %}
+Preconditions
+{% for condition in preconditions %}
+- {{ condition }}
+{% endfor %}
+
+{% endif %}
+{% if main_flow %}
+Main Flow
+{% for step in main_flow %}
+{{ loop.index }}. {{ step }}
+{% endfor %}
+
+{% endif %}
+{% if alternative_flows %}
+Alternative Flows
+{% for flow in alternative_flows %}
+- {{ flow }}
+{% endfor %}
+
+{% endif %}
+{% if postconditions %}
+Postconditions
+{% for condition in postconditions %}
+- {{ condition }}
+{% endfor %}
+
+{% endif %}
+{% if notes %}
+Notes
+{{ notes }}
+{% endif %}
