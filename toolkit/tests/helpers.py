@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from novamarket_toolkit.generators.base import BaseGenerator
+from novamarket_toolkit.validators.base import BaseValidator
 
 
 class DummyGenerator(BaseGenerator[str]):
@@ -25,3 +26,20 @@ class DummyGenerator(BaseGenerator[str]):
             The same string that was provided.
         """
         return data
+
+
+class DummyValidator(BaseValidator[str]):
+    """Simple validator used in framework tests."""
+
+    artifact_name = "dummy"
+
+    def validate(self, data: str) -> None:
+        """
+        Validate the provided data.
+
+        Parameters
+        ----------
+        data:
+            Input data used for testing.
+        """
+        return

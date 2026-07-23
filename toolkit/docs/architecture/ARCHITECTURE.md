@@ -64,6 +64,110 @@ Templates should never become responsible for business logic.
 
 ---
 
+---
+
+# Validator Framework
+
+## Purpose
+
+The Validator Framework is responsible for verifying domain models before artifact generation.
+
+Validators ensure that input data satisfies structural and business requirements, allowing generators to assume that every received model is valid.
+
+Validation is intentionally implemented as a separate architectural layer and does not perform any artifact generation.
+
+---
+
+## Architecture
+
+The Validator Framework follows the same architectural principles as the Generator Framework.
+
+Every validator inherits from `BaseValidator`.
+
+Validators are discovered through `ValidatorRegistry`.
+
+Validator instances are created by `ValidatorFactory`.
+
+This symmetry keeps both frameworks consistent and simplifies future maintenance.
+
+```
+Domain Model
+      │
+      ▼
+BaseValidator
+      │
+      ▼
+Artifact Validator
+```
+
+---
+
+## Responsibilities
+
+Validators are responsible for:
+
+- verifying required fields;
+- validating empty strings;
+- validating collections;
+- checking duplicate identifiers;
+- verifying reference integrity;
+- ensuring model consistency before generation.
+
+Validators never:
+
+- render templates;
+- generate artifacts;
+- access the file system;
+- communicate with the Template Engine.
+
+---
+
+## Validation Workflow
+
+The validation process is performed before artifact generation.
+
+```
+Domain Model
+      │
+      ▼
+Validator
+      │
+      ▼
+Generator
+      │
+      ▼
+Template Engine
+      │
+      ▼
+Rendered Artifact
+```
+
+Generators may therefore assume that every incoming model has already passed validation.
+
+---
+
+## Extensibility
+
+Adding a new validator requires only three steps:
+
+1. Create a validator inheriting from `BaseValidator`.
+2. Register it in `ValidatorRegistry`.
+3. Instantiate it through `ValidatorFactory`.
+
+Existing infrastructure does not require modification, satisfying the Open/Closed Principle.
+
+---
+
+## Current Validators
+
+The Toolkit currently provides validators for:
+
+- User Story
+- Use Case
+- BPMN Process
+
+Additional validators should follow the same architectural conventions.
+
 ## KISS (Keep It Simple, Stupid)
 
 The architecture favors simple and explicit solutions.

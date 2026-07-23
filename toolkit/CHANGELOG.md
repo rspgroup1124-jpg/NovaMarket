@@ -4,6 +4,27 @@ All notable changes to the NovaMarket Toolkit are documented in this file.
 
 The project follows an iterative sprint-based development process.
 
+
+---
+
+## Sprint 9
+
+### Added
+
+- Added the Validator Framework.
+- Added the `BaseValidator` abstract base class.
+- Added the `ValidatorRegistry`.
+- Added the `ValidatorFactory`.
+- Added validator-specific exceptions:
+  - `ValidationError`
+  - `ValidatorNotFoundError`
+  - `DuplicateValidatorError`
+- Added the `UserStoryValidator`.
+- Added the `UseCaseValidator`.
+- Added the `BPMNValidator`.
+- Added unit tests for the Validator Framework.
+- Added unit tests for all artifact validators.
+- Updated the project architecture documentation to include the Validator Framework.
 ---
 
 ## Sprint 8

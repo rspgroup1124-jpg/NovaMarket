@@ -6,11 +6,11 @@ from novamarket_toolkit.generators.factory import GeneratorFactory
 from tests.helpers import DummyGenerator
 
 
-def test_create_generator(registry) -> None:
+def test_create_generator(generator_registry) -> None:
     """
     Verify that the factory creates the correct generator instance.
     """
-    factory = GeneratorFactory(registry)
+    factory = GeneratorFactory(generator_registry)
 
     generator = factory.create("dummy")
 

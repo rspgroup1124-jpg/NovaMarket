@@ -58,15 +58,21 @@ NovaMarket/
 
 The Toolkit is a Python package that automates the creation of common Business/System Analyst artifacts.
 
+
 ### Current Features
 
 - Localization subsystem
-- Template Engine (Jinja2)
+- Validator Framework
 - Generator Framework
+- Template Engine (Jinja2)
+- Architecture documentation
 - User Story generation
 - Use Case generation
-- Unit and integration tests
-
+- BPMN Process generation
+- User Story validation
+- Use Case validation
+- BPMN Process validation
+- Unit tests
 ---
 
 ## 🏗 Architecture
@@ -87,7 +93,7 @@ Jinja2 Templates
 ```
 
 This separation keeps business logic independent from presentation and makes the framework easily extensible.
-
+The architectural principles, engineering conventions and long-term design decisions are documented in `docs/architecture/ARCHITECTURE.md`.
 ---
 
 ## 🧪 Quality Assurance
@@ -95,27 +101,31 @@ This separation keeps business logic independent from presentation and makes the
 The project includes:
 
 - Unit tests
-- Integration tests
 - Black formatting
 - Ruff linting
 - Immutable domain models
+- Validator Framework
 - Template-based artifact generation
-
----
+- Architecture review
+- Architecture documentation
 
 ## 🚀 Current Status
-
 Completed:
 
 - Project infrastructure
 - Localization subsystem
+- Validator Framework
 - Generator framework
 - Template engine
 - User Story generator
 - Use Case generator
+- BPMN Process generator
+- User Story validator
+- Use Case validator
+- BPMN validator
+- Architecture documentation
 
-The Toolkit is now ready to support additional artifact generators without changes to the core architecture.
-
+The Toolkit now provides a scalable layered architecture for validating and generating Business/System Analyst artifacts. Its core components include Localization, Validator Framework, Generator Framework and the Template Engine, all documented through a formal architecture specification that captures engineering principles, architectural rules and long-term design decisions.
 ---
 
 ## 📅 Roadmap
@@ -123,12 +133,15 @@ The Toolkit is now ready to support additional artifact generators without chang
 - [x] Project infrastructure
 - [x] Localization subsystem
 - [x] Generator framework
+- [x] Validator Framework
 - [x] Template Engine
 - [x] User Story generator
 - [x] Use Case generator
-- [ ] BPMN generator
+- [x] BPMN Process generator
 - [ ] UML generator
 - [ ] OpenAPI generator
 - [ ] SQL generator
 - [ ] HTML export
 - [ ] PDF export
+- [ ] PlantUML export
+- [ ] BPMN XML export
