@@ -312,3 +312,27 @@ NovaMarket Toolkit is intended to evolve into a complete automation platform for
 Future development should continue by introducing independent, well-structured subsystems while preserving the existing layered architecture.
 
 Every new subsystem should strengthen the architecture rather than complicate it.
+
+
+---
+
+# Context Usage
+
+The project documentation is the authoritative source of architectural decisions and engineering conventions.
+
+When continuing development in a new AI conversation:
+
+- Do not request the complete documentation set.
+- Request only the specific sections relevant to the current sprint.
+- Request only the source files that will actually be modified.
+- Never ask for unrelated project files.
+
+When information is missing:
+
+1. Request the project structure if needed.
+2. Request the specific file to be modified.
+3. Request only the relevant documentation section.
+
+Avoid requesting complete documents unless absolutely necessary.
+
+The objective is to minimize repeated context while preserving architectural consistency.
