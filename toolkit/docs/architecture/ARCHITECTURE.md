@@ -80,24 +80,23 @@ Validation is intentionally implemented as a separate architectural layer and do
 
 ## Architecture
 
-The Validator Framework follows the same architectural principles as the Generator Framework.
+The Generator, Validator, and Export Frameworks follow the same architectural principles.
 
-Every validator inherits from `BaseValidator`.
+Every implementation inherits from its corresponding base class.
 
-Validators are discovered through `ValidatorRegistry`.
+Framework components are registered through dedicated registries and instantiated through factories.
 
-Validator instances are created by `ValidatorFactory`.
+This shared architecture keeps all extensible subsystems consistent, predictable, and easy to maintain.
 
-This symmetry keeps both frameworks consistent and simplifies future maintenance.
-
-```
-Domain Model
-      │
-      ▼
-BaseValidator
-      │
-      ▼
-Artifact Validator
+```text
+                 Base Component
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+ BaseValidator   BaseGenerator   BaseExporter
+        │              │              │
+        ▼              ▼              ▼
+   Validators     Generators      Exporters
 ```
 
 ---
@@ -122,11 +121,14 @@ Validators never:
 
 ---
 
+
 ## Validation Workflow
 
 The validation process is performed before artifact generation.
 
-```
+After a successful validation, the generated artifact may be exported to one of the supported output formats.
+
+```text
 Domain Model
       │
       ▼
@@ -139,11 +141,18 @@ Generator
 Template Engine
       │
       ▼
-Rendered Artifact
+Generated Artifact
+      │
+      ▼
+Exporter
+      │
+      ▼
+Exported Output
 ```
 
 Generators may therefore assume that every incoming model has already passed validation.
 
+Exporters may assume that every incoming artifact has already been successfully generated.
 ---
 
 ## Extensibility
@@ -205,20 +214,43 @@ Pipeline
         ├───────────────┐
         ▼               ▼
 Validators        Generators
-        │               │
-        └───────┬───────┘
-                ▼
-        Template Engine
-                │
-                ▼
-        Jinja2 Templates
+                        │
+                        ▼
+                 Template Engine
+                        │
+                        ▼
+                Jinja2 Templates
+                        │
+                        ▼
+                Generated Artifact
+                        │
+                        ▼
+                Export Framework
+                        │
+        ┌───────────────┼───────────────┐
+        ▼               ▼               ▼
+    Markdown          HTML            PDF
 ```
 
-The Pipeline is the single orchestration layer responsible for coordinating artifact generation.
+The Pipeline is the central orchestration layer responsible for coordinating validation, artifact generation, and export operations.
 
 Each layer depends only on the layer directly below it.
 
 This separation minimizes coupling, simplifies testing, and allows each subsystem to evolve independently.
+
+---
+
+# Layer Responsibilities
+
+| Layer | Responsibility |
+|--------|----------------|
+| Application / CLI | Entry point for users and external integrations. |
+| Pipeline | Orchestrate validation, generation, and export workflows. |
+| Validators | Validate domain models before generation. |
+| Generators | Transform validated domain models into generated artifacts. |
+| Template Engine | Load and render Jinja2 templates. |
+| Templates | Define the textual representation of generated artifacts. |
+| Export Framework | Convert generated artifacts into supported output formats (Markdown, HTML, PDF). |
 
 ---
 
@@ -669,16 +701,18 @@ Architectural changes are introduced gradually through development sprints.
 
 Every significant architectural decision follows the same workflow:
 
-1. Planning
+1. Sprint Planning
 2. Architecture Design
 3. Implementation
 4. Unit Testing
 5. Integration Testing
 6. Architecture Review
 7. Documentation Update
-8. Git Commit
-9. Git Tag
-10. GitHub Push
+8. Code Formatting
+9. Static Analysis
+10. Git Commit
+11. GitHub Push
+12. Git Tag (for releases only)
 
 Only architectural decisions that have been validated through implementation and testing are added to this document.
 

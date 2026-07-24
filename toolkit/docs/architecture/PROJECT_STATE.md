@@ -36,7 +36,7 @@ The Toolkit follows a layered architecture and emphasizes:
 
 Current Sprint:
 
-**Sprint 10 — Pipeline Framework (Completed)**
+**Sprint 11 — Export Framework (Completed)**
 
 Project Status:
 
@@ -50,13 +50,13 @@ All implemented subsystems successfully pass:
 
 Current test status:
 
-- **74 tests passing**
+- **93 tests passing**
 
 Documentation is synchronized with the implementation.
 
 Git history is organized using sprint-based commits.
 
-The Toolkit now provides a unified Pipeline Framework as the single public entry point for artifact generation.
+The Toolkit now provides a unified Pipeline Framework as the single public entry point for artifact generation and an Export Framework for producing artifacts in multiple output formats.
 
 ---
 
@@ -125,9 +125,26 @@ Implemented features:
 
 ---
 
+## Export Framework
+
+- BaseExporter
+- ExportRegistry
+- ExportFactory
+- Export Exceptions
+
+Implemented features:
+
+- Markdown export
+- HTML export
+- PDF export
+- Multiple export format support
+- Independent export infrastructure
+
+---
+
 # Current Architecture
 
-The Toolkit currently follows a five-layer architecture.
+The Toolkit currently follows a six-layer architecture.
 
 ```text
 Domain Models
@@ -137,6 +154,9 @@ Validators
       │
       ▼
 Generators
+      │
+      ▼
+Exporters
       │
       ▼
 Template Engine
@@ -220,6 +240,7 @@ toolkit/
 ├── src/
 │   └── novamarket_toolkit/
 │       ├── commands/
+│       ├── exporters/
 │       ├── generators/
 │       ├── glossary/
 │       ├── i18n/
@@ -232,6 +253,10 @@ toolkit/
 │       └── validators/
 │
 ├── tests/
+│   ├── exporters/
+│   ├── generators/
+│   ├── pipeline/
+│   └── validators/
 │
 ├── CHANGELOG.md
 ├── README.md
@@ -240,7 +265,7 @@ toolkit/
 
 Each subsystem has a single responsibility and follows the same architectural conventions whenever applicable.
 
-The Pipeline Framework serves as the orchestration layer that coordinates validators and generators while preserving the independence of individual subsystems.
+The Pipeline Framework serves as the orchestration layer that coordinates validators, generators, and exporters while preserving the independence of individual subsystems.
 
 ---
 
@@ -294,6 +319,7 @@ Current implementation includes:
 - Generator Framework
 - Validator Framework
 - Pipeline Framework
+- Export Framework
 
 ## Artifact Generators
 
@@ -307,6 +333,8 @@ Current implementation includes:
 - Use Case
 - BPMN Process
 
+---
+
 ## Architecture
 
 - Layered Architecture
@@ -316,14 +344,15 @@ Current implementation includes:
 - Template-based Rendering
 - Centralized Validation
 - Dependency Injection
+- Independent Export Infrastructure
 
 ---
 
 # Next Sprint
 
-**Sprint 11 — Export Framework**
+**Sprint 12 — Command Framework (CLI)**
 
-The next subsystem will introduce a common export infrastructure independent of generators.
+The next subsystem will transform the Toolkit into a complete command-line application built on top of the existing Pipeline and Export Frameworks.
 
 The target architecture will become:
 
@@ -336,24 +365,22 @@ Pipeline
         ├───────────────┐
         ▼               ▼
 Validators        Generators
-        │               │
-        └───────┬───────┘
-                ▼
-        Template Engine
-                │
-                ▼
-        Templates
-                │
-                ▼
-        Export Framework
-                │
-                ▼
-Markdown
-HTML
-PDF
+                        │
+                        ▼
+                 Template Engine
+                        │
+                        ▼
+                   Templates
+                        │
+                        ▼
+                 Export Framework
+                        │
+        ┌───────────────┼───────────────┐
+        ▼               ▼               ▼
+    Markdown          HTML            PDF
 ```
 
-The Export Framework will provide a unified mechanism for exporting generated artifacts to multiple output formats while remaining independent of the generation process.
+The Command Framework will provide a unified user interface for generating, validating, and exporting artifacts through a single public entry point.
 
 ---
 
@@ -363,16 +390,13 @@ The long-term objective is to build a complete automation platform for Business 
 
 Planned future subsystems include:
 
-- Pipeline Framework
-- Export Framework
+- Command Framework (CLI)
 - Import Framework
 - OpenAPI Generator
 - UML Generator
 - SQL Generator
 - PlantUML Generator
 - BPMN XML Generator
-- HTML Export
-- PDF Export
 - Plugin System
 
 Every future subsystem will follow the architectural principles defined in:

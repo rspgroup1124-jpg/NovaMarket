@@ -4,6 +4,29 @@ All notable changes to the NovaMarket Toolkit are documented in this file.
 
 The project follows an iterative sprint-based development process.
 
+
+## Sprint 11
+
+### Added
+
+- Added the Export Framework.
+- Added the `BaseExporter` abstract base class.
+- Added the `ExportRegistry`.
+- Added the `ExportFactory`.
+- Added exporter-specific exceptions:
+  - `ExporterError`
+  - `DuplicateExporterError`
+  - `ExporterNotFoundError`
+- Added the `MarkdownExporter`.
+- Added the `HtmlExporter`.
+- Added the `PdfExporter`.
+- Added unit tests for the Export Framework.
+- Added tests for the `MarkdownExporter`.
+- Added tests for the `HtmlExporter`.
+- Added tests for the `PdfExporter`.
+- Updated the project architecture documentation to include the Export Framework.
+
+
 ## Sprint 10
 
 ### Added

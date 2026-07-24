@@ -12,14 +12,15 @@ Its purpose is to provide the minimum required context while avoiding unnecessar
 
 Current Sprint:
 
-Sprint 10 (Pipeline Framework)
+Sprint 12 (Command Framework)
 
 Project Status:
 
 - Stable architecture
-- All tests passing
+- Export Framework completed
+- 93 tests passing
 - Documentation synchronized
-- Sprint 9 completed
+- Sprint 11 completed
 
 ---
 
@@ -32,6 +33,7 @@ The following documents define the project.
 - PROJECT_STATE.md
 - AI_CONTEXT.md
 - ROADMAP.md
+- CHANGELOG.md
 
 These documents should not be requested in full.
 
@@ -53,12 +55,12 @@ Always follow the established engineering process.
 8. Review the final architecture
 9. Documentation Update
 10. Run Black
-11. Run Ruff.
+11. Run Ruff
 12. Run Pytest
 13. Review Git status
 14. Commit the completed work
-15. Push the commit to the remote repository.
-16. Create a version tag only when a release or significant milestone has been completed.
+15. Push the commit to the remote repository
+16. Create a version tag only when a release or significant milestone has been completed
 
 Do not skip steps.
 
@@ -80,7 +82,7 @@ Do not request unrelated files.
 
 # Conversation Goal
 
-The objective of the current conversation is to continue the next planned sprint according to ROADMAP.md.
+The objective of the current conversation is to continue the next planned sprint according to `ROADMAP.md`.
 
 The first task is always Sprint Planning.
 
@@ -92,8 +94,8 @@ Code should only be written after architecture and design have been agreed upon.
 
 Before starting work:
 
-1. Open PROJECT_STATE.md.
+1. Open `PROJECT_STATE.md`.
 2. Identify the active sprint.
-3. Review ROADMAP.md for sprint objectives.
+3. Review `ROADMAP.md` for sprint objectives.
 4. Request only the source files that will be modified.
 5. Begin Sprint Planning.
