@@ -30,14 +30,13 @@ The Toolkit follows a layered architecture and emphasizes:
 - separation of responsibilities;
 - immutable domain models;
 - comprehensive automated testing.
-
 ---
 
 # Current Status
 
 Current Sprint:
 
-**Sprint 9 — Validator Framework**
+**Sprint 10 — Pipeline Framework (Completed)**
 
 Project Status:
 
@@ -49,9 +48,15 @@ All implemented subsystems successfully pass:
 - Ruff
 - Pytest
 
+Current test status:
+
+- **74 tests passing**
+
 Documentation is synchronized with the implementation.
 
-Git history is organized using sprint-based commits and tags.
+Git history is organized using sprint-based commits.
+
+The Toolkit now provides a unified Pipeline Framework as the single public entry point for artifact generation.
 
 ---
 
@@ -102,6 +107,21 @@ Implemented validators:
 - User Story Validator
 - Use Case Validator
 - BPMN Validator
+
+## Pipeline Framework
+
+- Pipeline
+- PipelineBuilder
+- PipelineContext
+- PipelineResult
+- Pipeline Exceptions
+
+Implemented features:
+
+- Validator orchestration
+- Generator orchestration
+- Public `Pipeline.generate()` API
+- Dependency injection through PipelineBuilder
 
 ---
 
@@ -205,6 +225,7 @@ toolkit/
 │       ├── i18n/
 │       ├── locales/
 │       ├── models/
+│       ├── pipeline/
 │       ├── template_engine/
 │       ├── templates/
 │       ├── utils/
@@ -218,6 +239,8 @@ toolkit/
 ```
 
 Each subsystem has a single responsibility and follows the same architectural conventions whenever applicable.
+
+The Pipeline Framework serves as the orchestration layer that coordinates validators and generators while preserving the independence of individual subsystems.
 
 ---
 
@@ -270,6 +293,7 @@ Current implementation includes:
 - Template Engine
 - Generator Framework
 - Validator Framework
+- Pipeline Framework
 
 ## Artifact Generators
 
@@ -288,40 +312,48 @@ Current implementation includes:
 - Layered Architecture
 - Immutable Domain Models
 - Registry/Factory Pattern
+- Pipeline Orchestration
 - Template-based Rendering
 - Centralized Validation
+- Dependency Injection
 
 ---
 
 # Next Sprint
 
-**Sprint 10 — Pipeline Framework**
+**Sprint 11 — Export Framework**
 
-The next subsystem will introduce the orchestration layer that connects validators and generators into a unified processing pipeline.
+The next subsystem will introduce a common export infrastructure independent of generators.
 
 The target architecture will become:
 
 ```text
-Domain Models
-      │
-      ▼
+Application / CLI
+        │
+        ▼
 Pipeline
-      │
-      ├──────────────┐
-      ▼              │
-Validators           │
-      │              │
-      ▼              │
-Generators           │
-      │              │
-      ▼              │
-Template Engine ◄────┘
-      │
-      ▼
-Templates
+        │
+        ├───────────────┐
+        ▼               ▼
+Validators        Generators
+        │               │
+        └───────┬───────┘
+                ▼
+        Template Engine
+                │
+                ▼
+        Templates
+                │
+                ▼
+        Export Framework
+                │
+                ▼
+Markdown
+HTML
+PDF
 ```
 
-The Pipeline Framework will become the single entry point for artifact generation.
+The Export Framework will provide a unified mechanism for exporting generated artifacts to multiple output formats while remaining independent of the generation process.
 
 ---
 

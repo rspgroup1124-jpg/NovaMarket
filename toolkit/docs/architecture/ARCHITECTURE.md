@@ -194,24 +194,31 @@ Registration, configuration and dependencies should remain understandable withou
 
 # System Architecture
 
-The Toolkit follows a layered architecture.
+The Toolkit follows a layered architecture centered around the Pipeline Framework.
 
 ```text
-Domain Models
-      │
-      ▼
-Generators
-      │
-      ▼
-Template Engine
-      │
-      ▼
-Jinja2 Templates
+Application / CLI
+        │
+        ▼
+Pipeline
+        │
+        ├───────────────┐
+        ▼               ▼
+Validators        Generators
+        │               │
+        └───────┬───────┘
+                ▼
+        Template Engine
+                │
+                ▼
+        Jinja2 Templates
 ```
+
+The Pipeline is the single orchestration layer responsible for coordinating artifact generation.
 
 Each layer depends only on the layer directly below it.
 
-This separation minimizes coupling and allows each subsystem to evolve independently.
+This separation minimizes coupling, simplifies testing, and allows each subsystem to evolve independently.
 
 ---
 
@@ -219,25 +226,12 @@ This separation minimizes coupling and allows each subsystem to evolve independe
 
 | Layer | Responsibility |
 |--------|----------------|
-| Domain Models | Describe business entities without business logic. |
-| Generators | Transform domain models into template contexts. |
+| Application / CLI | Entry point for users and external integrations. |
+| Pipeline | Orchestrate validation and artifact generation. |
+| Validators | Validate domain models before generation. |
+| Generators | Transform validated domain models into template contexts or generated artifacts. |
 | Template Engine | Load and render templates. |
 | Templates | Define the final presentation of generated artifacts. |
-
----# Architecture Rules
-
-Architecture Rules define mandatory engineering conventions used throughout the Toolkit.
-
-Unlike Design Principles, which describe the overall philosophy of the project, Architecture Rules define concrete requirements that every implementation must follow.
-
-Each rule contains:
-
-- **ID** — unique identifier.
-- **Since** — sprint where the rule became active.
-- **Status** — current lifecycle status.
-- **Related Principle** — design principle implemented by the rule.
-- **Rule** — mandatory requirement.
-- **Rationale** — why the rule exists.
 
 ---
 

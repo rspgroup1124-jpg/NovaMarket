@@ -133,20 +133,17 @@ Main objective:
 - Use Case Validator.
 - BPMN Validator.
 - Validator tests.
-
 ---
 
-# Planned Development
+## ✅ Sprint 10 — Pipeline Framework
 
-## Sprint 10 — Pipeline Framework
-
-Status: Planned
+Status: Completed
 
 Main objective:
 
 Introduce a unified orchestration layer responsible for the complete artifact generation workflow.
 
-Planned components:
+Implemented components:
 
 - Pipeline
 - PipelineBuilder
@@ -154,12 +151,20 @@ Planned components:
 - PipelineResult
 - Pipeline Exceptions
 
-Responsibilities:
+Implemented responsibilities:
 
 - orchestrate validation;
 - orchestrate generation;
 - centralize workflow execution;
 - provide a single public API for artifact creation.
+
+Additional improvements:
+
+- integrated the Validator Framework;
+- integrated the Generator Framework;
+- introduced dependency injection through PipelineBuilder;
+- added the public `Pipeline.generate()` API;
+- preserved layered architecture and subsystem independence.
 
 ---
 

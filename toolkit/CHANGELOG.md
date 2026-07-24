@@ -4,6 +4,26 @@ All notable changes to the NovaMarket Toolkit are documented in this file.
 
 The project follows an iterative sprint-based development process.
 
+## Sprint 10
+
+### Added
+
+- Added the Pipeline Framework.
+- Added the `Pipeline` orchestration layer.
+- Added the `PipelineBuilder`.
+- Added the `PipelineContext`.
+- Added the `PipelineResult`.
+- Added pipeline-specific exceptions:
+  - `PipelineError`
+  - `PipelineConfigurationError`
+  - `PipelineExecutionError`
+- Integrated the Validator Framework into the Pipeline.
+- Integrated the Generator Framework into the Pipeline.
+- Added the public `Pipeline.generate()` API.
+- Added dependency injection support for validator and generator factories.
+- Added unit tests for the Pipeline Framework.
+- Added tests for the public Pipeline API.
+- Updated the project architecture documentation to include the Pipeline Framework.
 
 ---
 
@@ -38,7 +58,6 @@ The project follows an iterative sprint-based development process.
 - Added unit tests for the `BPMNGenerator`.
 - Added the initial architecture documentation (`docs/architecture/ARCHITECTURE.md`).
 
-
 ### Architecture
 
 - Established the architecture documentation for the Toolkit.
@@ -47,6 +66,7 @@ The project follows an iterative sprint-based development process.
 - Documented the design principles governing the Toolkit architecture.
 - Formalized layer responsibilities and the architecture evolution workflow.
 - Confirmed compliance with the Open/Closed Principle (OCP) by adding the BPMN generator without modifying the existing generator infrastructure.
+
 ---
 
 ## Sprint 7

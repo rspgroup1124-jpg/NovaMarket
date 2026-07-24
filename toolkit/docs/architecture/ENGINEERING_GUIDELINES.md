@@ -392,58 +392,60 @@ Every sprint follows the same engineering workflow.
 
 No stage should be skipped.
 
-```text
-Planning
-    │
-    ▼
-Architecture Design
-    │
-    ▼
+Sprint Planning
+        │
+        ▼
+Architecture Discussion
+        │
+        ▼
+Project Structure Review
+        │
+        ▼
 Implementation
-    │
-    ▼
+        │
+        ▼
 Unit Tests
-    │
-    ▼
+        │
+        ▼
 Integration Tests (when applicable)
-    │
-    ▼
+        │
+        ▼
+Sprint Review
+        │
+        ▼
 Architecture Review
-    │
-    ▼
-ARCHITECTURE.md
-    │
-    ▼
-CHANGELOG.md
-    │
-    ▼
-README.md
-    │
-    ▼
+        │
+        ▼
+Documentation Update
+        │
+        ▼
 Black
-    │
-    ▼
+        │
+        ▼
 Ruff
-    │
-    ▼
+        │
+        ▼
 Pytest
-    │
-    ▼
+        │
+        ▼
 Git Status
-    │
-    ▼
+        │
+        ▼
+Git Add
+        │
+        ▼
 Git Commit
-    │
-    ▼
-Git Tag
-    │
-    ▼
+        │
+        ▼
 Git Push
-```
+        │
+        ▼
+Version Tag (release only)
 
-Each sprint is considered complete only after every stage has been successfully finished.
 
----
+ Each sprint is considered complete only after every stage has been successfully finished.
+
+Version tags are created only for significant project milestones or official releases, not for every sprint.
 
 # Development Process
 
@@ -453,14 +455,21 @@ Every architectural change follows the same sequence.
 2. Discuss possible solutions.
 3. Compare alternatives.
 4. Select the most scalable approach.
-5. Design the architecture.
-6. Implement the solution.
-7. Write tests.
-8. Update documentation.
-9. Perform quality checks.
-10. Commit the completed work.
-
-Implementation is never the first step.
+5. Review the project structure.
+6. Design the architecture.
+7. Implement the solution.
+8. Write unit tests.
+9. Write integration tests when applicable.
+10. Review the completed sprint
+11. Review the final architecture
+12. Update documentation.
+13. Run Black.
+14. Run Ruff.
+15. Run Pytest.
+16. Review Git status.
+17. Commit the completed work.
+18. Push the commit to the remote repository.
+19. Create a version tag only when a release or significant milestone has been completed.
 
 ---
 

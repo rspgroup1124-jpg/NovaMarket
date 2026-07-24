@@ -49,8 +49,16 @@ Always follow the established engineering process.
 4. Implementation
 5. Unit Tests
 6. Integration Tests
-7. Documentation Update
-8. Git Commit
+7. Review the completed sprint
+8. Review the final architecture
+9. Documentation Update
+10. Run Black
+11. Run Ruff.
+12. Run Pytest
+13. Review Git status
+14. Commit the completed work
+15. Push the commit to the remote repository.
+16. Create a version tag only when a release or significant milestone has been completed.
 
 Do not skip steps.
 

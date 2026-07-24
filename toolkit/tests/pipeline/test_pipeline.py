@@ -35,6 +35,53 @@ def test_pipeline_returns_result() -> None:
     assert result.artifact == context.model
 
 
+def test_pipeline_generate_returns_result() -> None:
+    """Pipeline.generate should return a PipelineResult."""
+    pipeline = Pipeline()
+
+    result = pipeline.generate(
+        artifact_type="user_story",
+        model={"title": "Login"},
+    )
+
+    assert isinstance(result, PipelineResult)
+    assert result.success is True
+    assert result.artifact == {"title": "Login"}
+
+
+def test_pipeline_generate_uses_default_locale() -> None:
+    """Pipeline.generate should use the default locale."""
+    pipeline = Pipeline()
+
+    result = pipeline.generate(
+        artifact_type="user_story",
+        model={},
+    )
+
+    assert result.success is True
+
+
+def test_pipeline_generate_matches_run() -> None:
+    """Pipeline.generate should produce the same result as Pipeline.run()."""
+    pipeline = Pipeline()
+
+    model = {"title": "Login"}
+
+    generated = pipeline.generate(
+        artifact_type="user_story",
+        model=model,
+    )
+
+    executed = pipeline.run(
+        PipelineContext(
+            artifact_type="user_story",
+            model=model,
+        )
+    )
+
+    assert generated == executed
+
+
 def test_pipeline_context_defaults() -> None:
     """PipelineContext should use the default locale."""
     context = PipelineContext(
