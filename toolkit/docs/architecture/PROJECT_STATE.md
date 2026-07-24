@@ -31,12 +31,11 @@ The Toolkit follows a layered architecture and emphasizes:
 - immutable domain models;
 - comprehensive automated testing.
 ---
-
 # Current Status
 
 Current Sprint:
 
-**Sprint 11 — Export Framework (Completed)**
+**Sprint 12 — Command Framework (Completed)**
 
 Project Status:
 
@@ -50,13 +49,13 @@ All implemented subsystems successfully pass:
 
 Current test status:
 
-- **93 tests passing**
+- **100 tests passing**
 
 Documentation is synchronized with the implementation.
 
 Git history is organized using sprint-based commits.
 
-The Toolkit now provides a unified Pipeline Framework as the single public entry point for artifact generation and an Export Framework for producing artifacts in multiple output formats.
+The Toolkit now provides a complete command-line interface built on top of the existing architecture, exposing a unified entry point for generating, validating, exporting, and managing analysis artifacts while preserving the layered design of the project.
 
 ---
 
@@ -139,6 +138,35 @@ Implemented features:
 - PDF export
 - Multiple export format support
 - Independent export infrastructure
+-
+---
+
+# Command Framework (CLI)
+
+Implemented components:
+
+- Typer-based CLI
+- Command registration
+- Command package
+- Command unit tests
+
+Available commands:
+
+- doctor
+- generate
+- validate
+- export
+- list
+- info
+- version
+
+Implemented features:
+
+- Unified command-line interface
+- Modular command architecture
+- Independent command implementations
+- User-friendly help system
+- Full CLI test coverage
 
 ---
 
@@ -229,6 +257,8 @@ All business decisions are performed before rendering.
 
 # Project Structure
 
+# Project Structure
+
 The Toolkit is organized into independent subsystems.
 
 ```text
@@ -253,6 +283,7 @@ toolkit/
 │       └── validators/
 │
 ├── tests/
+│   ├── commands/
 │   ├── exporters/
 │   ├── generators/
 │   ├── pipeline/
@@ -262,11 +293,6 @@ toolkit/
 ├── README.md
 └── pyproject.toml
 ```
-
-Each subsystem has a single responsibility and follows the same architectural conventions whenever applicable.
-
-The Pipeline Framework serves as the orchestration layer that coordinates validators, generators, and exporters while preserving the independence of individual subsystems.
-
 ---
 
 # Current Quality Status
@@ -320,6 +346,23 @@ Current implementation includes:
 - Validator Framework
 - Pipeline Framework
 - Export Framework
+- Command Framework
+
+## Command-line Interface
+
+Available commands:
+
+- doctor
+- generate
+- validate
+- export
+- list
+- info
+- version
+
+## Test Status
+
+- 100 unit tests passing
 
 ## Artifact Generators
 
@@ -335,6 +378,7 @@ Current implementation includes:
 
 ---
 
+
 ## Architecture
 
 - Layered Architecture
@@ -345,19 +389,26 @@ Current implementation includes:
 - Centralized Validation
 - Dependency Injection
 - Independent Export Infrastructure
+- Command Framework (CLI)
 
 ---
 
 # Next Sprint
 
-**Sprint 12 — Command Framework (CLI)**
+**Sprint 13 — Plugin Framework**
 
-The next subsystem will transform the Toolkit into a complete command-line application built on top of the existing Pipeline and Export Frameworks.
+The next subsystem will allow external packages to extend the Toolkit without modifying the core application.
 
 The target architecture will become:
 
 ```text
 Application / CLI
+        │
+        ▼
+Command Framework
+        │
+        ▼
+Plugin Framework
         │
         ▼
 Pipeline
@@ -380,7 +431,7 @@ Validators        Generators
     Markdown          HTML            PDF
 ```
 
-The Command Framework will provide a unified user interface for generating, validating, and exporting artifacts through a single public entry point.
+The Plugin Framework will introduce a unified extension mechanism for discovering and registering generators, validators, exporters, and future Toolkit components while preserving the existing layered architecture.
 
 ---
 

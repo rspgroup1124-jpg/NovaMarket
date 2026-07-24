@@ -12,15 +12,15 @@ Its purpose is to provide the minimum required context while avoiding unnecessar
 
 Current Sprint:
 
-Sprint 12 (Command Framework)
+Sprint 13 (Plugin Framework)
 
 Project Status:
 
 - Stable architecture
-- Export Framework completed
-- 93 tests passing
+- Command Framework completed
+- 100 tests passing
 - Documentation synchronized
-- Sprint 11 completed
+- Sprint 12 completed
 
 ---
 
@@ -31,7 +31,6 @@ The following documents define the project.
 - ARCHITECTURE.md
 - ENGINEERING_GUIDELINES.md
 - PROJECT_STATE.md
-- AI_CONTEXT.md
 - ROADMAP.md
 - CHANGELOG.md
 

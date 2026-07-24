@@ -29,7 +29,7 @@ Every subsystem must integrate into the existing layered architecture without br
 
 # Development Roadmap
 
-## ✅ Sprint 1 — Project Infrastructure
+## Sprint 1 — Project Infrastructure
 
 Status: Completed
 
@@ -41,7 +41,7 @@ Main objective:
 
 ---
 
-## ✅ Sprint 2 — Localization Framework
+##  Sprint 2 — Localization Framework
 
 Status: Completed
 
@@ -53,7 +53,7 @@ Main objective:
 
 ---
 
-## ✅ Sprint 3 — Template Engine
+##  Sprint 3 — Template Engine
 
 Status: Completed
 
@@ -65,7 +65,7 @@ Main objective:
 
 ---
 
-## ✅ Sprint 4 — Generator Framework
+##  Sprint 4 — Generator Framework
 
 Status: Completed
 
@@ -77,7 +77,7 @@ Main objective:
 
 ---
 
-## ✅ Sprint 5
+##  Sprint 5
 
 Status: Completed
 
@@ -88,7 +88,7 @@ Main objective:
 
 ---
 
-## ✅ Sprint 6
+##  Sprint 6
 
 Status: Completed
 
@@ -99,7 +99,7 @@ Main objective:
 
 ---
 
-## ✅ Sprint 7
+##  Sprint 7
 
 Status: Completed
 
@@ -109,7 +109,7 @@ Main objective:
 
 ---
 
-## ✅ Sprint 8
+##  Sprint 8
 
 Status: Completed
 
@@ -120,7 +120,7 @@ Main objective:
 
 ---
 
-## ✅ Sprint 9 — Validator Framework
+##  Sprint 9 — Validator Framework
 
 Status: Completed
 
@@ -135,7 +135,7 @@ Main objective:
 - Validator tests.
 ---
 
-## ✅ Sprint 10 — Pipeline Framework
+##  Sprint 10 — Pipeline Framework
 
 Status: Completed
 
@@ -168,44 +168,55 @@ Additional improvements:
 
 ---
 
-## Sprint 11 — Export Framework
 
-Status: Planned
+##  Sprint 11 — Export Framework
+
+Status: Completed
 
 Main objective:
 
 Introduce a common export infrastructure independent of generators.
 
-Planned components:
+Implemented components:
 
 - BaseExporter
 - ExportRegistry
 - ExportFactory
+- Export Exceptions
 
-Initial exporters:
+Implemented exporters:
 
 - Markdown Export
 - HTML Export
 - PDF Export
 
-Responsibilities:
+Implemented responsibilities:
 
 - export generated artifacts;
 - support multiple output formats;
 - isolate export logic from generators.
 
+Additional improvements:
+
+- introduced a unified export infrastructure;
+- implemented exporter registration through `ExportRegistry`;
+- introduced dependency injection through `ExportFactory`;
+- added unit tests for the Export Framework;
+- preserved layered architecture and subsystem independence.
 ---
+
 
 ## Sprint 12 — Command Framework (CLI)
 
-Status: Planned
+Status: Completed
 
 Main objective:
 
 Transform the Toolkit into a complete command-line application.
 
-Planned commands:
+Implemented commands:
 
+- doctor
 - generate
 - validate
 - export
@@ -213,11 +224,17 @@ Planned commands:
 - info
 - version
 
-Responsibilities:
+Implemented features:
 
-- provide a user-friendly interface;
-- invoke the Pipeline Framework;
-- support localization.
+- user-friendly command-line interface;
+- centralized command registration;
+- modular command architecture;
+- CLI help system;
+- unit test coverage for all commands.
+
+Result:
+
+The Toolkit now provides a unified command-line interface that serves as the public entry point for interacting with the implemented frameworks while preserving the existing layered architecture.
 
 ---
 
@@ -316,62 +333,78 @@ Responsibilities:
 
 # Architecture Evolution
 
-The Toolkit architecture is expected to evolve gradually.
+The Toolkit architecture evolves incrementally through independent, reusable frameworks.
 
 Current architecture:
 
 ```text
-Domain Models
-      │
-      ▼
-Validators
-      │
-      ▼
-Generators
-      │
-      ▼
-Template Engine
-      │
-      ▼
-Templates
+Application / CLI
+        │
+        ▼
+Command Framework
+        │
+        ▼
+Pipeline
+        │
+        ├───────────────┐
+        ▼               ▼
+Validators        Generators
+                        │
+                        ▼
+                 Template Engine
+                        │
+                        ▼
+                   Templates
+                        │
+                        ▼
+                 Export Framework
+                        │
+        ┌───────────────┼───────────────┐
+        ▼               ▼               ▼
+    Markdown          HTML            PDF
 ```
 
 Target architecture after Sprint 15:
 
 ```text
-CLI
- │
- ▼
+Application / CLI
+        │
+        ▼
+Command Framework
+        │
+        ▼
+Plugin Framework
+        │
+        ▼
 Pipeline
- │
- ├───────────────┐
- ▼               ▼
-Validators    Generators
- │               │
- └──────┐   ┌────┘
-        ▼   ▼
- Template Engine
         │
-        ▼
-Templates
-        │
-        ▼
-Export Framework
-        │
-        ▼
-Markdown
-HTML
-PDF
-YAML
-JSON
-SQL
-PlantUML
-Mermaid
+        ├───────────────┐
+        ▼               ▼
+Validators        Generators
+                        │
+                        ▼
+                 Template Engine
+                        │
+                        ▼
+                   Templates
+                        │
+                        ▼
+                 Export Framework
+                        │
+        ┌───────────────┼───────────────┬───────────────┬───────────────┐
+        ▼               ▼               ▼               ▼
+    Markdown          HTML            PDF        Diagram Generators
+                                                        │
+                                      ┌─────────────────┴─────────────────┐
+                                      ▼                                   ▼
+                                 PlantUML                            Mermaid
 ```
 
-The architecture will remain modular, layered and extensible.
+The Toolkit maintains a modular, layered, and extensible architecture.
 
-Each new subsystem should integrate with existing infrastructure instead of replacing it.
+Each framework has a clearly defined responsibility and integrates with the existing infrastructure through stable public interfaces.
+
+Future development extends the architecture by introducing new frameworks and plugins rather than modifying existing subsystems.
 
 ---
 

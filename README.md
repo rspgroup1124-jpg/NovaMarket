@@ -86,38 +86,43 @@ The Toolkit is a Python package that automates the creation of common Business/S
 
 ## 🏗 Architecture
 
-The Toolkit follows a layered architecture centered around the Pipeline Framework.
+The Toolkit follows a layered architecture composed of independent frameworks centered around the Pipeline Framework.
 
 ```text
 Application / CLI
         │
         ▼
-Pipeline
+Command Framework
         │
         ▼
-Validators
+Pipeline Framework
         │
-        ▼
-Generators
-        │
-        ▼
-Template Engine
-        │
-        ▼
-Jinja2 Templates
-        │
-        ▼
-Generated Artifact
-        │
-        ▼
-Export Framework
-        │
- ┌──────┼────────┐
- ▼      ▼        ▼
-Markdown HTML    PDF
+        ├────────────────────────┐
+        ▼                        ▼
+Validator Framework      Generator Framework
+                                 │
+                                 ▼
+                         Template Engine
+                                 │
+                                 ▼
+                         Jinja2 Templates
+                                 │
+                                 ▼
+                        Generated Artifact
+                                 │
+                                 ▼
+                         Export Framework
+                                 │
+          ┌──────────────────────┼──────────────────────┐
+          ▼                      ▼                      ▼
+      Markdown                 HTML                   PDF
 ```
 
-This layered architecture separates validation, generation, rendering, and export responsibilities while keeping each subsystem independent and easily extensible.
+The Command Framework provides the public command-line interface for interacting with the Toolkit.
+
+The Pipeline Framework orchestrates validation, artifact generation, template rendering, and export workflows while keeping the individual frameworks independent.
+
+This layered architecture minimizes coupling, simplifies testing, and allows new frameworks and plugins to be added without affecting existing subsystems.
 
 The architectural principles, engineering conventions, and long-term design decisions are documented in `docs/architecture/ARCHITECTURE.md`.
 
@@ -138,7 +143,9 @@ The project includes:
 - Template-based artifact generation
 - Architecture review
 - Architecture documentation
+
 ---
+
 ## 🚀 Current Status
 
 Completed:
@@ -150,6 +157,7 @@ Completed:
 - Validator Framework
 - Pipeline Framework
 - Export Framework
+- Command Framework
 - User Story generator
 - Use Case generator
 - BPMN Process generator
@@ -159,17 +167,20 @@ Completed:
 - Markdown exporter
 - HTML exporter
 - PDF exporter
+- Command-line interface
 - Architecture documentation
-
 
 The Toolkit now provides a scalable layered architecture for Business and System Analysis automation.
 
-Its core subsystems include Localization, the Template Engine, the Generator Framework, the Validator Framework and the Pipeline Framework. Together they provide a unified workflow for validating and generating analysis artifacts while preserving subsystem independence and architectural consistency.
+Its core subsystems include the Localization Framework, Template Engine, Generator Framework, Validator Framework, Pipeline Framework, Export Framework, and Command Framework. Together they provide a unified workflow for validating, generating, exporting, and managing analysis artifacts while preserving subsystem independence and architectural consistency.
 
-The Pipeline Framework serves as the single public entry point for artifact generation, coordinating validators and generators through a centralized orchestration layer.
+The Command Framework serves as the public entry point for interacting with the Toolkit through a unified command-line interface.
+
+The Pipeline Framework remains the central orchestration layer responsible for coordinating validation, artifact generation, and export workflows.
 
 ---
-## 📅 Roadmap
+
+# 📅 Roadmap
 
 - [x] Project infrastructure
 - [x] Localization subsystem
@@ -178,12 +189,12 @@ The Pipeline Framework serves as the single public entry point for artifact gene
 - [x] Validator Framework
 - [x] Pipeline Framework
 - [x] Export Framework
+- [x] Command Framework (CLI)
 - [x] User Story generator
 - [x] Use Case generator
 - [x] BPMN Process generator
 - [x] HTML export
 - [x] PDF export
-- [ ] Command Framework (CLI)
 - [ ] Plugin Framework
 - [ ] Import Framework
 - [ ] UML generator

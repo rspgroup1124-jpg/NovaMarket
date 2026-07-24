@@ -203,54 +203,60 @@ Registration, configuration and dependencies should remain understandable withou
 
 # System Architecture
 
-The Toolkit follows a layered architecture centered around the Pipeline Framework.
+The Toolkit follows a layered architecture composed of independent frameworks centered around the Pipeline Framework.
 
 ```text
 Application / CLI
         │
         ▼
-Pipeline
+Command Framework
         │
-        ├───────────────┐
-        ▼               ▼
-Validators        Generators
-                        │
-                        ▼
-                 Template Engine
-                        │
-                        ▼
-                Jinja2 Templates
-                        │
-                        ▼
-                Generated Artifact
-                        │
-                        ▼
-                Export Framework
-                        │
-        ┌───────────────┼───────────────┐
-        ▼               ▼               ▼
-    Markdown          HTML            PDF
+        ▼
+Pipeline Framework
+        │
+        ├────────────────────────┐
+        ▼                        ▼
+Validator Framework      Generator Framework
+                                 │
+                                 ▼
+                         Template Engine
+                                 │
+                                 ▼
+                         Jinja2 Templates
+                                 │
+                                 ▼
+                        Generated Artifact
+                                 │
+                                 ▼
+                         Export Framework
+                                 │
+          ┌──────────────────────┼──────────────────────┐
+          ▼                      ▼                      ▼
+      Markdown                 HTML                   PDF
 ```
 
-The Pipeline is the central orchestration layer responsible for coordinating validation, artifact generation, and export operations.
+The Command Framework provides the public entry point for interacting with the Toolkit.
 
-Each layer depends only on the layer directly below it.
+The Pipeline Framework orchestrates the complete artifact lifecycle by coordinating validation, generation, template rendering, and export.
 
-This separation minimizes coupling, simplifies testing, and allows each subsystem to evolve independently.
+Each framework has a single responsibility and communicates only through well-defined public interfaces.
+
+This layered architecture minimizes coupling, simplifies testing, and allows every subsystem to evolve independently.
 
 ---
 
 # Layer Responsibilities
 
-| Layer | Responsibility |
-|--------|----------------|
-| Application / CLI | Entry point for users and external integrations. |
-| Pipeline | Orchestrate validation, generation, and export workflows. |
-| Validators | Validate domain models before generation. |
-| Generators | Transform validated domain models into generated artifacts. |
+| Framework | Responsibility |
+|-----------|----------------|
+| Application / CLI | Public entry point for users and external integrations. |
+| Command Framework | Register and dispatch command-line operations. |
+| Pipeline Framework | Coordinate validation, generation, and export workflows. |
+| Validator Framework | Validate domain models before generation. |
+| Generator Framework | Produce artifacts from validated domain models. |
 | Template Engine | Load and render Jinja2 templates. |
-| Templates | Define the textual representation of generated artifacts. |
-| Export Framework | Convert generated artifacts into supported output formats (Markdown, HTML, PDF). |
+| Templates | Define artifact presentation and structure. |
+| Export Framework | Export generated artifacts to supported output formats. |
 
 ---
 

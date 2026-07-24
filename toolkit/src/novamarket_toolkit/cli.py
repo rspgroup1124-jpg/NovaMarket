@@ -2,8 +2,15 @@
 
 import typer
 
-from novamarket_toolkit.commands.doctor import doctor_command
-from novamarket_toolkit.commands.version import version_command
+from novamarket_toolkit.commands import (
+    doctor_command,
+    export_command,
+    generate_command,
+    info_command,
+    list_command,
+    validate_command,
+    version_command,
+)
 
 app = typer.Typer(
     help="Automation toolkit for Business/System Analysts.",
@@ -11,6 +18,11 @@ app = typer.Typer(
 )
 
 app.command("doctor")(doctor_command)
+app.command("generate")(generate_command)
+app.command("validate")(validate_command)
+app.command("export")(export_command)
+app.command("list")(list_command)
+app.command("info")(info_command)
 app.command("version")(version_command)
 
 

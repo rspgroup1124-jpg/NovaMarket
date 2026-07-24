@@ -5,6 +5,33 @@ All notable changes to the NovaMarket Toolkit are documented in this file.
 The project follows an iterative sprint-based development process.
 
 
+## Sprint 12
+
+### Added
+
+- Added the Command Framework.
+- Added the Typer-based command-line interface.
+- Added the `commands` package.
+- Added the following CLI commands:
+  - `doctor`
+  - `generate`
+  - `validate`
+  - `export`
+  - `list`
+  - `info`
+  - `version`
+- Added centralized command registration.
+- Added unit tests for the Command Framework.
+- Added tests for the `doctor` command.
+- Added tests for the `generate` command.
+- Added tests for the `validate` command.
+- Added tests for the `export` command.
+- Added tests for the `list` command.
+- Added tests for the `info` command.
+- Added tests for the `version` command.
+- Updated the project architecture documentation to include the Command Framework.
+
+
 ## Sprint 11
 
 ### Added
